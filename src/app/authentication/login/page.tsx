@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { headers } from "next/headers";
 
 export default function LoginPage() {
   const [username, setUsername] = useState<string>("");
@@ -27,8 +26,9 @@ export default function LoginPage() {
     });
 
     console.log("username: " + username + "/password: " + password);
+
     if (res.ok) {
-      router.push("/authentication");
+      router.push("/");
     } else {
       setError("Invalid username or password");
     }
