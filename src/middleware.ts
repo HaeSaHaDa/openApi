@@ -4,8 +4,8 @@ export function middleware(req: NextRequest) {
   console.log("✅ middleware.ts 실행됨!");
   console.log("🔹 요청 경로:", req.nextUrl.pathname);
 
-  const accessToken = req.cookies.get("access")?.value; // 🔹 JWT 쿠키 확인
-  console.log(accessToken);
+  const session = req.cookies.get("JSESSIONID")?.value; // 🔹 JWT 쿠키 확인
+  console.log(session);
 
   // 보호된 페이지 리스트
   const protectedRoutes = ["/authentication/test"];
@@ -15,7 +15,7 @@ export function middleware(req: NextRequest) {
   );
 
   // 보호된 페이지 접근 시 JWT가 없으면 로그인 페이지로 리다이렉트
-  if (isProtected && !accessToken) {
+  if (isProtected && !session) {
     console.log("⛔ 보호된 경로 접근 차단! 로그인 페이지로 이동");
     return NextResponse.redirect(new URL("/authentication/login", req.url));
   }

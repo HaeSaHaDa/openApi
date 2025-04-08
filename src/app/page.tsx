@@ -1,4 +1,5 @@
 import Image from "next/image";
+import LogoutButton from "./authentication/login/logout";
 
 export default function Home() {
   return (
@@ -110,6 +111,10 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        <div>
+          <h1>마이페이지</h1>
+        </div>
+        <LogoutButton />
       </footer>
     </div>
   );
